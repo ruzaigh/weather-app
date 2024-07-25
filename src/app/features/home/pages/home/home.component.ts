@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
 import { Subscription } from 'rxjs';
 import { Loaction } from '../../models/location';
+import { CurrentForecastComponent } from "../../components/current-forecast/current-forecast.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [CurrentForecastComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
