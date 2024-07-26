@@ -1,0 +1,32 @@
+.container{
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  mat-card{
+    flex-direction: row;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 12px;
+    align-items: center;
+    .wrapper{
+      display: flex;
+      .text-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .title{
+          font-weight: bold;
+          font-size: 21px;
+          }
+
+
+      }
+      img{
+        width: 88px;
+      }
+    }
+    .temperature{
+      font-size: 48px;
+    }
+  }
+}

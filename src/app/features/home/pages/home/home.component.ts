@@ -3,11 +3,16 @@ import { WeatherService } from '../../services/weather.service';
 import { Subscription } from 'rxjs';
 import { Loaction } from '../../models/location';
 import { CurrentForecastComponent } from "../../components/current-forecast/current-forecast.component";
+import { AttributeComponent } from "../../components/attribute/attribute.component";
+import { HourlyForecastComponent } from "../../components/hourly-forecast/hourly-forecast.component";
+import { SearchBarComponent } from "../../components/search-bar/search-bar.component";
+import { TemperatureGraphComponent } from "../../components/temperature-graph/temperature-graph.component";
+import { WeeklyForecastComponent } from "../../components/weekly-forecast/weekly-forecast.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CurrentForecastComponent],
+  imports: [CurrentForecastComponent, AttributeComponent, HourlyForecastComponent, SearchBarComponent, TemperatureGraphComponent, WeeklyForecastComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -18,7 +23,7 @@ export class HomeComponent {
 
 
   ngOnInit(){
-    this.getLocation()
+    // this.getLocation()
   }
   getLocation(){
     this.subscription.add(

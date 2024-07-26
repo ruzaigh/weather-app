@@ -1,0 +1,21 @@
+.container{
+
+  .header-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    span{
+      font-size: 18px;
+    }
+  }
+  .hourly-container{
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    mat-card{
+      padding: 10px;
+      align-items: center;
+    }
+  }
+}

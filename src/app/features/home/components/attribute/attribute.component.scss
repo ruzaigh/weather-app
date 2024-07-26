@@ -1,0 +1,18 @@
+.attribute-container{
+  display: flex;
+  gap: 16px;
+  flex-direction: revert;
+  background: 0;
+  justify-content: space-between;
+  padding: 16px;
+  flex-wrap: wrap;
+  .attribute{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    img{
+      width: 88px;
+      height: 88px;
+    }
+  }
+}
