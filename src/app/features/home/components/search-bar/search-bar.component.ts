@@ -1,10 +1,13 @@
-import { AsyncPipe } from '@angular/common';
+import {AsyncPipe, NgIf} from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Observable, startWith, map } from 'rxjs';
+import {Observable, Subscription, debounceTime, BehaviorSubject, filter, startWith, tap} from 'rxjs';
+import {WeatherService} from "../../services/weather.service";
+import {ICurrentWeather, ILoaction} from "../../models/location";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-search-bar',
@@ -16,33 +19,61 @@ import { Observable, startWith, map } from 'rxjs';
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
+    NgIf,
+    MatProgressSpinner,
   ],
   templateUrl: './search-bar.component.html',
   styleUrl: './search-bar.component.scss'
 })
 export class SearchBarComponent {
-  currentPlace: string = 'Cape Town';
-  myControl = new FormControl<string >('');
-  options = [{name: 'Mary'}, {name: 'Shelley'}, {name: 'Igor'}];
-  filteredOptions: Observable<any> = new Observable<any>();
-
+  searchControl = new FormControl<string >('');
+  private locationOptionsSubject = new BehaviorSubject<ICurrentWeather>(null);
+  locationOptions$: Observable<ICurrentWeather> = this.locationOptionsSubject.asObservable()
+  private subscription: Subscription = new Subscription();
+  isLoading: boolean = false
+  constructor(private weatherService: WeatherService) { }
   ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value;
-        return name ? this._filter(name as string) : this.options.slice();
-      }),
-    );
+
+    this.searchControl.valueChanges.pipe(
+      tap(() => this.isLoading = true),
+      filter((value) => value !== ''),
+     debounceTime(500 )
+    ).subscribe((value ) =>{
+      this.isLoading = true;
+      if (typeof value === 'object' && value !== null) {
+        this.isLoading = false;
+        return;
+      }
+      this.getLocation(value)
+    })
   }
 
-  displayFn(user: any): string {
-    return user && user.name ? user.name : '';
+  getLocation(searchTerm: string){
+    this.subscription.add(
+      this.weatherService.getLocations(searchTerm).subscribe((data: ILoaction[] ) => {
+        this.getCurrentWeatherLocation(data[0].lat, data[0].lon)
+      },
+        error => {
+          //  display toast message
+          this.isLoading = false
+        }
+      )
+    )
   }
 
-  private _filter(name: string) {
-    const filterValue = name.toLowerCase();
-
-    return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
+  getCurrentWeatherLocation(latitude: number, longitude: number){
+    this.subscription.add(
+      this.weatherService.getCurrentWeather(latitude, longitude).subscribe((data: ICurrentWeather) => {
+        console.log(data)
+        this.locationOptionsSubject.next(data);
+        this.isLoading = false
+      })
+    )
   }
+
+
+  displayFn(location: ICurrentWeather): string {
+    return location && location.name ? location.name : '';
+  }
+
 }

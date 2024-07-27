@@ -1,14 +1,21 @@
 <form class="example-form">
   <input
     type="text"
-    [placeholder]="currentPlace"
-    [formControl]="myControl"
+    placeholder="Search"
+    [formControl]="searchControl"
     [matAutocomplete]="auto"
     class="example-input"
   />
-  <mat-autocomplete #auto="matAutocomplete">
-    @for (street of filteredOptions | async; track street) {
-    <mat-option [value]="street">{{ street }}</mat-option>
+  @if(isLoading){
+    <mat-spinner></mat-spinner>
+  }
+
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+    @if(locationOptions$ | async; as location){
+      <mat-option [value]="location">
+        {{ location.name }}
+      </mat-option>
     }
+
   </mat-autocomplete>
 </form>

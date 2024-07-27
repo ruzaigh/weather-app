@@ -1,0 +1,14 @@
+:host{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: rgb(32, 43, 59);
+  border-radius: 16px;
+
+  span{
+    color: #fff;
+    font-size: 21px;
+     padding: 16px 0 0 16px;
+  }
+}
+

@@ -1,57 +1,90 @@
-<div class="container">
-  <mat-card appearance="outlined">
-    <div class="wrapper">
-      <img src="assets/all/partly-cloudy-day.svg" />
-      <div class="text-wrapper">
-        <span class="title">Monday</span>
-        <span>Sunny</span>
-      </div>
-    </div>
+<mat-card appearance="outlined">
+  <mat-card-subtitle> 5-Day Forecast</mat-card-subtitle>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Today </mat-panel-title>
+        <mat-panel-description>
+          <div class="img-wrapper">
+            <img src="assets/all/partly-cloudy-day.svg" />
+            Partially cloudy
+          </div>
+          <div class="temperature-wrapper">
+            <span class="max-temp-text">21°C </span
+            ><span class="min-temp-text"> /16°C</span>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-hourly-forecast></app-hourly-forecast>
+    </mat-expansion-panel>
 
-    <div class="temperature">30°</div>
-  </mat-card>
-  <mat-card appearance="outlined">
-    <div class="wrapper">
-      <img src="assets/all/partly-cloudy-day.svg" />
-      <div class="text-wrapper">
-        <span class="title">Tuesday</span>
-        <span>Sunny</span>
-      </div>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Tue</mat-panel-title>
+        <mat-panel-description>
+          <div class="img-wrapper">
+            <img src="assets/all/rain.svg" />
+            Rain
+          </div>
 
-    <div class="temperature">30°</div>
-  </mat-card>
-  <mat-card appearance="outlined">
-    <div class="wrapper">
-      <img src="assets/all/partly-cloudy-day.svg" />
-      <div class="text-wrapper">
-        <span class="title">Wednesday</span>
-        <span>Sunny</span>
-      </div>
-    </div>
+          <div class="temperature-wrapper">
+            <span class="max-temp-text">21°C </span
+            ><span class="min-temp-text"> /16°C</span>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-hourly-forecast></app-hourly-forecast>
+    </mat-expansion-panel>
 
-    <div class="temperature">30°</div>
-  </mat-card>
-  <mat-card appearance="outlined">
-    <div class="wrapper">
-      <img src="assets/all/partly-cloudy-day.svg" />
-      <div class="text-wrapper">
-        <span class="title">Thursday</span>
-        <span>Sunny</span>
-      </div>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Wed </mat-panel-title>
+        <mat-panel-description>
+          <div class="img-wrapper">
+            <img src="assets/all/rain.svg" />
+            Rain
+          </div>
+          <div class="temperature-wrapper">
+            <span class="max-temp-text">21°C </span
+            ><span class="min-temp-text"> /16°C</span>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-hourly-forecast></app-hourly-forecast>
+    </mat-expansion-panel>
 
-    <div class="temperature">30°</div>
-  </mat-card>
-  <mat-card appearance="outlined">
-    <div class="wrapper">
-      <img src="assets/all/partly-cloudy-day.svg" />
-      <div class="text-wrapper">
-        <span class="title">Friday</span>
-        <span>Sunny</span>
-      </div>
-    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Thu</mat-panel-title>
+        <mat-panel-description>
+          <div class="img-wrapper">
+            <img src="assets/all/cloudy.svg" />
+            Cloudy
+          </div>
+          <div class="temperature-wrapper">
+            <span class="max-temp-text">21°C </span
+            ><span class="min-temp-text"> /16°C</span>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-hourly-forecast></app-hourly-forecast>
+    </mat-expansion-panel>
 
-    <div class="temperature">30°</div>
-  </mat-card>
-</div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Fri </mat-panel-title>
+        <mat-panel-description>
+          <div class="img-wrapper">
+            <img src="assets/all/clear-day.svg" />
+            Sunny
+          </div>
+          <div class="temperature-wrapper">
+            <span class="max-temp-text">21°C </span
+            ><span class="min-temp-text"> /16°C</span>
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-hourly-forecast></app-hourly-forecast>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card>

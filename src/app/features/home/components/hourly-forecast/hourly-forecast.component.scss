@@ -1,9 +1,10 @@
 .container{
-
+    background: rgb(32, 43, 59);
   .header-container{
     display: flex;
     justify-content: space-between;
-    padding: 16px;
+    padding: 16px 0;
+    color: #fff;
     span{
       font-size: 18px;
     }

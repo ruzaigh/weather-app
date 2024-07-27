@@ -1,7 +1,14 @@
 form{
-  border: solid 1px #a7a7a7;
+  background: rgb(32, 43, 59);
   border-radius: 14px;
-  padding: 6px 12px 6px 8px;
+  padding: 10px 12px 10px 12px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  mat-spinner{
+    height: 30px !important;
+    width: 30px !important;
+  }
   mat-form-field{
     display: block;
   }
