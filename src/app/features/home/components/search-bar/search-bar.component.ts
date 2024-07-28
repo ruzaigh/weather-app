@@ -4,7 +4,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {Observable, Subscription, debounceTime, BehaviorSubject, filter, startWith, tap} from 'rxjs';
+import {Observable, Subscription, debounceTime, BehaviorSubject, filter, tap} from 'rxjs';
 import {WeatherService} from "../../services/weather.service";
 import {ICurrentWeather, ILoaction} from "../../models/location";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
@@ -26,21 +26,21 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
   styleUrl: './search-bar.component.scss'
 })
 export class SearchBarComponent {
-  searchControl = new FormControl<string >('');
+
+  public searchControl = new FormControl<string >('');
   private locationOptionsSubject = new BehaviorSubject<ICurrentWeather>(null);
-  locationOptions$: Observable<ICurrentWeather> = this.locationOptionsSubject.asObservable()
+  public locationOptions$: Observable<ICurrentWeather> = this.locationOptionsSubject.asObservable()
   private subscription: Subscription = new Subscription();
-  isLoading: boolean = false
+  public isLoading: boolean = false
   constructor(private weatherService: WeatherService) { }
   ngOnInit() {
 
     this.searchControl.valueChanges.pipe(
-      tap(() => this.isLoading = true),
       filter((value) => value !== ''),
-     debounceTime(500 )
+      tap(() => this.isLoading = true),
+     debounceTime(300 )
     ).subscribe((value ) =>{
-      this.isLoading = true;
-      if (typeof value === 'object' && value !== null) {
+      if (typeof value === 'object' && value !== null ) {
         this.isLoading = false;
         return;
       }
@@ -49,26 +49,36 @@ export class SearchBarComponent {
   }
 
   getLocation(searchTerm: string){
-    this.subscription.add(
-      this.weatherService.getLocations(searchTerm).subscribe((data: ILoaction[] ) => {
-        this.getCurrentWeatherLocation(data[0].lat, data[0].lon)
-      },
-        error => {
-          //  display toast message
-          this.isLoading = false
-        }
-      )
-    )
+      this.subscription.add(
+        this.weatherService.getLocations(searchTerm)
+          .subscribe(
+            (data: ILoaction[]) => {
+              this.getCurrentWeatherLocation(data[0].lat, data[0].lon);
+            },
+            (error) => {
+              this.isLoading = false;
+            }
+          )
+      );
   }
 
   getCurrentWeatherLocation(latitude: number, longitude: number){
     this.subscription.add(
-      this.weatherService.getCurrentWeather(latitude, longitude).subscribe((data: ICurrentWeather) => {
-        console.log(data)
+      this.weatherService.getCurrentWeather(latitude, longitude)
+        .subscribe((data: ICurrentWeather) => {
         this.locationOptionsSubject.next(data);
         this.isLoading = false
-      })
+      },
+          (error) =>{
+            this.isLoading = false;
+          })
     )
+  }
+
+  setLocation(location:ICurrentWeather){
+    localStorage.setItem('currentLocation', JSON.stringify(location));
+    this.weatherService.selectedWeather.next(location)
+    this.isLoading = false;
   }
 
 

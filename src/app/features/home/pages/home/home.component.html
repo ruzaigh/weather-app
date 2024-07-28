@@ -1,10 +1,21 @@
 <div class="container">
-  <!-- search bar > -->
-  <app-search-bar></app-search-bar>
-  <app-current-forecast></app-current-forecast>
-  <app-attribute></app-attribute>
-  <!-- all 5 days below each other -->
-  <app-weekly-forecast></app-weekly-forecast>
-  <!-- high and low temperature graph for 5 days > -->
-  <app-temperature-graph></app-temperature-graph>
+  <div class="wrapper">
+    @if(!selectedLocation){
+      <div class="search-wrapper">
+        <span class="heading">Enter a location name</span>
+        <app-search-bar></app-search-bar>
+      </div>
+
+    } @else {
+      <!-- search bar > -->
+      <app-search-bar></app-search-bar>
+      <app-current-forecast></app-current-forecast>
+      <app-attribute></app-attribute>
+      <!-- all 5 days below each other -->
+      <app-weekly-forecast></app-weekly-forecast>
+    }
+
+
+  </div>
+
 </div>

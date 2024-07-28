@@ -14,9 +14,11 @@ form{
   }
   mat-label{}
   input{
-    width: 100%;
+   flex: 1;
     height: 32px;
     border-radius: 12px;
     all: unset;
+    display: block;
+    width: 100%;
   }
 }
