@@ -1,90 +1,35 @@
 <mat-card appearance="outlined">
   <mat-card-subtitle> 5-Day Forecast</mat-card-subtitle>
   <mat-accordion>
+  @for(weather of weeklyForest; track weather){
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title>Today </mat-panel-title>
+        <mat-panel-title>{{weather.date | date:'ccc'}} </mat-panel-title>
         <mat-panel-description>
           <div class="img-wrapper">
-            <img src="assets/all/partly-cloudy-day.svg" />
-            Partially cloudy
+            @if(weather.weather[0]?.main === 'Rain'){
+              <img mat-card-lg-image src="assets/all/rain.svg" />
+            }
+            @if(weather.weather[0]?.main === 'Clouds'){
+              <img mat-card-lg-image src="assets/all/cloudy.svg" />
+            }
+            @if(weather.weather[0]?.main === 'Clear'){
+              <img mat-card-lg-image src="assets/all/clear-day.svg" />
+            }
           </div>
           <div class="temperature-wrapper">
-            <span class="max-temp-text">21°C </span
-            ><span class="min-temp-text"> /16°C</span>
+            <span class="max-temp-text">{{ weather.maxTemp | number: '1.0-0' }}°C </span
+            ><span class="min-temp-text"> /{{ weather.minTemp | number: '1.0-0' }}°C</span>
           </div>
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <app-hourly-forecast></app-hourly-forecast>
-    </mat-expansion-panel>
+      <div class="wrapper">
+        @for(hourlyForecast of weather.dayForecast; track hourlyForecast){
+          <app-hourly-forecast [hourlyForecast]="hourlyForecast"></app-hourly-forecast>
+        }
+      </div>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Tue</mat-panel-title>
-        <mat-panel-description>
-          <div class="img-wrapper">
-            <img src="assets/all/rain.svg" />
-            Rain
-          </div>
-
-          <div class="temperature-wrapper">
-            <span class="max-temp-text">21°C </span
-            ><span class="min-temp-text"> /16°C</span>
-          </div>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-hourly-forecast></app-hourly-forecast>
     </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Wed </mat-panel-title>
-        <mat-panel-description>
-          <div class="img-wrapper">
-            <img src="assets/all/rain.svg" />
-            Rain
-          </div>
-          <div class="temperature-wrapper">
-            <span class="max-temp-text">21°C </span
-            ><span class="min-temp-text"> /16°C</span>
-          </div>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-hourly-forecast></app-hourly-forecast>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> Thu</mat-panel-title>
-        <mat-panel-description>
-          <div class="img-wrapper">
-            <img src="assets/all/cloudy.svg" />
-            Cloudy
-          </div>
-          <div class="temperature-wrapper">
-            <span class="max-temp-text">21°C </span
-            ><span class="min-temp-text"> /16°C</span>
-          </div>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-hourly-forecast></app-hourly-forecast>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>Fri </mat-panel-title>
-        <mat-panel-description>
-          <div class="img-wrapper">
-            <img src="assets/all/clear-day.svg" />
-            Sunny
-          </div>
-          <div class="temperature-wrapper">
-            <span class="max-temp-text">21°C </span
-            ><span class="min-temp-text"> /16°C</span>
-          </div>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-hourly-forecast></app-hourly-forecast>
-    </mat-expansion-panel>
+  }
   </mat-accordion>
 </mat-card>

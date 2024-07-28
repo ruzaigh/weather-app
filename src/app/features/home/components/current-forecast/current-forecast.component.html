@@ -1,19 +1,32 @@
+@if ( currentWeather){
 <mat-card appearance="outlined">
   <mat-card-header>
     <mat-card-title-group>
-      <mat-card-subtitle> Sunday, September 3, 2024 </mat-card-subtitle>
-      <mat-card-title>
-        Cape Town
-        <div class="temperature-container">
-          <div class="temperature-wrapper">
-            <h1>30</h1>
-            <span>°C</span>
+        <mat-card-subtitle> {{ currentDate | date:	'EEEE, MMMM d, y'}} </mat-card-subtitle>
+        <mat-card-title>
+          {{currentWeather.name}}
+          <div class="temperature-container">
+            <div class="temperature-wrapper">
+              <h1>{{currentWeather.main.temp  | number: '1.0-0'}}</h1>
+              <span>°C</span>
+            </div>
+            <span class="max-temp-text">{{ currentWeather.main.temp_max | number: '1.0-0' }}°C </span>
+            <span class="min-temp-text"> /{{ currentWeather.main.temp_min | number: '1.0-0' }}°C</span>
+            <div class="max-and-min-temp">
+            </div>
+            <span>{{currentWeather.weather[0].main}}</span>
           </div>
-          <span>Sunny Cloudy</span>
-        </div>
-      </mat-card-title>
-
-      <img mat-card-lg-image src="assets/all/partly-cloudy-day.svg" />
+        </mat-card-title>
+        @if(currentWeather.weather[0]?.main === 'Rain'){
+          <img mat-card-lg-image src="assets/all/rain.svg" />
+        }
+      @if(currentWeather.weather[0]?.main === 'Clouds'){
+        <img mat-card-lg-image src="assets/all/cloudy.svg" />
+      }
+      @if(currentWeather.weather[0]?.main === 'Clear'){
+        <img mat-card-lg-image src="assets/all/clear-day.svg" />
+      }
     </mat-card-title-group>
   </mat-card-header>
 </mat-card>
+}

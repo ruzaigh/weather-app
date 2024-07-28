@@ -1,18 +1,25 @@
-<mat-card class="attribute-container" appearance="outlined">
-  <div class="attribute">
-    <img src="assets/all/wind.svg" />
-    <span>Wind speed</span>
-  </div>
-  <div class="attribute">
-    <img src="assets/all/sunset.svg" />
-    <span>05:50</span>
-  </div>
-  <div class="attribute">
-    <img src="assets/all/sunrise.svg" />
-    <span>17:50</span>
-  </div>
-  <div class="attribute">
-    <img src="assets/all/humidity.svg" />
-    <span>77%</span>
-  </div>
-</mat-card>
+@if(currentWeather){
+  <mat-card class="attribute-container" appearance="outlined">
+    <div class="attribute">
+      <img src="assets/all/wind.svg" />
+      <span>Wind speed:</span>
+      <span>{{currentWeather.wind.speed | number: '1.0-0' }} km/h</span>
+    </div>
+    <div class="attribute">
+      <img src="assets/all/cloudy.svg" />
+      <span> Cloud cover:</span>
+      <span> {{currentWeather.clouds.all}}%</span>
+    </div>
+    <div class="attribute">
+      <img src="assets/all/thermometer-celsius.svg" />
+      <span>Feels like:</span>
+      <span>{{currentWeather.main.feels_like | number: '1.0-0'}}°C</span>
+    </div>
+    <div class="attribute">
+      <img src="assets/all/humidity.svg" />
+      <span>Humidity:</span>
+      <span>{{currentWeather.main.humidity}}%</span>
+    </div>
+  </mat-card>
+
+}

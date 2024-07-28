@@ -44,6 +44,12 @@ mat-card{
         }
 
       }
+      .wrapper{
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        overflow: scroll;
+      }
     }
   }
 }

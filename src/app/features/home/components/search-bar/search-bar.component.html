@@ -12,7 +12,9 @@
 
   <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
     @if(locationOptions$ | async; as location){
-      <mat-option [value]="location">
+      <mat-option
+        (click)="setLocation(location)"
+        [value]="location">
         {{ location.name }}
       </mat-option>
     }
