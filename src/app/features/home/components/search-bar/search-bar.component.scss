@@ -1,0 +1,22 @@
+form{
+  background: rgb(32, 43, 59);
+  border-radius: 14px;
+  padding: 10px 12px 10px 12px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  mat-spinner{
+    height: 30px !important;
+    width: 30px !important;
+  }
+  mat-form-field{
+    display: block;
+  }
+  mat-label{}
+  input{
+    width: 100%;
+    height: 32px;
+    border-radius: 12px;
+    all: unset;
+  }
+}

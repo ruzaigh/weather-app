@@ -1,0 +1,33 @@
+:host{
+
+  mat-card{
+    background: rgb(32, 43, 59);
+    color: #fff;
+    border: none;
+    mat-card-header{
+      padding: 16px;
+      mat-card-title-group{
+        flex-wrap: wrap;
+        mat-card-subtitle{
+          color: #9399a2ff;
+        }
+        mat-card-title{
+
+          .temperature-container{
+            .temperature-wrapper{
+              display: flex;
+              padding-top: 10px;
+              h1{
+                margin: 0;
+              }
+              span{
+                font-size: 16px;
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+}

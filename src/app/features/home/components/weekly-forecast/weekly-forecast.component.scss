@@ -1,0 +1,52 @@
+mat-card{
+  background: rgb(32, 43, 59);
+  color: #fff;
+  border: none;
+  padding: 16px;
+  mat-card-subtitle{
+    font-size: var(--mat-card-title-text-size);
+    color: #fff;
+    padding-bottom: 16px;
+  }
+  mat-accordion{
+    background: rgb(32, 43, 59);
+    mat-expansion-panel{
+      background: rgb(32, 43, 59);
+      mat-expansion-panel-header{
+        mat-panel-title{
+          color: #9399a2ff;
+        }
+        mat-panel-description{
+          color: #fff;
+          gap: 12px;
+          .img-wrapper{
+            display: flex;
+            align-items: center;
+            img{
+              width: 48px;
+              height: 48px;
+            }
+          }
+          .temperature-wrapper{
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 500;
+            padding-right:15px ;
+            gap: 4px;
+            .max-temp-text{
+              color: #fff;
+            }
+            .min-temp-text{
+              color: #9399a2ff;
+            }
+          }
+        }
+
+      }
+    }
+  }
+}
+
+
+
