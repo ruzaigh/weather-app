@@ -15,9 +15,3 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
    ```bash
    npm install
    ```
-
-3. **Environment Setup:**
-   - Ensure you have the Angular CLI installed globally. If not, install it using:
-     ```bash
-     npm install -g @angular/cli
-     ```
